@@ -1,0 +1,163 @@
+/* PALETTE 
+ *
+ * #f8b195
+ * #f67280 
+ * #6c5b7b 
+ * #355c7d
+ * 
+ */
+
+
+* {
+	box-sizing: border-box;
+	color: inherit;
+	font-family: inherit;
+	font-size: inherit;
+	font-weight: inherit;
+	border-color: inherit;
+	text-align: inherit;
+	text-decoration: inherit;
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100vh;
+	width: 100vw;
+	background: #fff;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 12px;
+	font-weight: 300;
+	position: relative;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	padding: 15px;
+	text-align: center;
+	color: #bdbdbd;
+	letter-spacing: 2px;
+	font-size: 9px;
+}
+
+[class*='button'] {
+	cursor: pointer;
+}
+
+.row {
+	height: 100%;
+}
+
+.row::before {
+	content: '';
+	clear: both;
+	display: table;
+}
+
+.row::after {
+	content: '';
+	clear: both;
+	display: table;
+}
+
+[class*='col'] {
+	float: left;
+	height: inherit;
+}
+
+.col-6 {
+	width: 16.66%;
+}
+
+nav.title-bar {
+	height: 40px;
+	width: 100%;
+	border-bottom: 1px solid #e5e5e5;
+	-webkit-app-region: drag;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 20px;
+}
+
+.content {
+	height: calc(100vh - 40px);
+}
+
+.content .progress-container {
+	height: 25%;
+	border-bottom: 1px solid #9e9e9e;
+	padding: 15px 20px;
+}
+
+.content .ajax-response-container {
+	height: 75%;
+	padding: 30px;
+}
+
+.progress-container .titles {
+	font-size: 12px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+.progress-container .progress-bar-wrapper {
+	position: relative;
+	height: 40px;
+	margin: 20px;
+	text-align: center;
+}
+
+.progress-bar-wrapper [class*='circle-'] {
+	height: 15px;
+	width: 15px;
+	border-radius: 50%;
+	background: #e5e5e5;
+	margin: auto;
+}
+
+.progress-bar-wrapper [class*='step-'] {
+	font-size: 9px;
+	letter-spacing: 3px;
+	margin-top: 5px;
+}
+
+[class*='circle'].complete {
+	background: #c5fcc2;
+}
+
+
+
+.ajax-response-container .ajax {
+	height: 100%;
+	width: 100%;
+}
+
+.ajax [class*='-step'] {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.ajax [class*='-step']:first-child {
+	display: -webkit-flex;
+}
+
+.ajax .start-button {
+	border: 1px solid #e5e5e5;
+	padding: 10px 40px;
+	font-size: 9px;
+	letter-spacing: 3px;
+	color: #111;
+	transition: 0.5s;
+	text-align: center;
+}
+
+.ajax .start-button:hover {
+	color: #111;
+	border-color: #c5fcc2;
+}

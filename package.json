@@ -1,0 +1,14 @@
+{
+	"name": "code2040-application",
+	"version": "0.1.0",
+	"main": "app.js",
+  "author": "Braxton Gunter",
+  "email": "beg2119@columbia.edu",
+  "scripts": {
+  	"start": "electron app.js"
+  }, 
+	"devDependencies": {
+    "electron-prebuilt": "^1.2.3"
+  },
+ 	"licence": "UNLICENSED"
+}
