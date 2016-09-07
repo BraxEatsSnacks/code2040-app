@@ -58,29 +58,61 @@
 
       <div class="ajax-response-container">
         <div class="ajax">
+          
           <div class="start-step current" data-step="0">
             <div class="start-button">begin</div>
           </div>
+          
           <div class="post-step" data-step="1">
             <div class="command-wrapper">
               <h5 class="instructions">enter token</h5>
               <div class="input-wrapper">
                 <input name="token" />
               </div>
+              <div class="token-button">send</div>
             </div>
+            <div class="ajax-success">
+              <h1 class="success-text">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                  <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+              </h1>
+            </div>
+
           </div>
-          <div class="next-step" data-step="2">
-            
+          
+          <div class="reverse-step" data-step="2">
+            <div class="command-wrapper">
+              <h5 class="instructions">word</h5>
+              <div class="input-wrapper">
+                <input name="word" readonly/>
+              </div>
+              <div class="reverse-button">reverse</div>
+            </div>
+            <div class="ajax-success">
+              <h1 class="success-text">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                  <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                  <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+              </h1>
+            </div>
+
           </div>
+          
           <div class="next-step" data-step="3">
             
           </div>
+          
           <div class="next-step" data-step="4">
             
           </div>
+          
           <div class="next-step" data-step="5">
             
           </div>
+
         </div>
       </div>
 
