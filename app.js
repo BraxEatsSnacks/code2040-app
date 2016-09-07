@@ -31,7 +31,7 @@ function createWindow() {
     title: 'Braxton\'s Code2040 Application',
     minHeight: 500,
     minWidth: 500,
-    width: 800,
+    width: 500,
     height: 500,
     maxWidth: 800,
     maxHeight: 500,
@@ -65,6 +65,6 @@ function windowsAllClosed() {
 };
 
 function createPseudoServer() {
-	// TODO require file that makes API request;
+	// TODO require file that does background work;
 	console.log('server started');
 };

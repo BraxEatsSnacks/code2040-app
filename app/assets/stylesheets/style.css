@@ -127,6 +127,7 @@ nav.title-bar {
 
 [class*='circle'].complete {
 	background: #c5fcc2;
+	background: #79C879;
 }
 
 
@@ -141,10 +142,35 @@ nav.title-bar {
 	align-items: center;
 	justify-content: center;
 	height: 100%;
+	text-align: center;
 }
 
 .ajax [class*='-step']:first-child {
 	display: -webkit-flex;
+}
+
+.ajax .instructions {
+	font-size: 9px;
+	letter-spacing: 3px;
+}
+
+.input-wrapper {
+	border-radius: 40px;
+	border: 1px solid #e5e5e5;
+	padding: 10px 40px;
+	width: 400px;
+	margin: 10px auto;
+	transition: 0.5s;
+}
+
+.input-wrapper.focus {
+	border-color: #355c7d;
+}
+
+.input-wrapper input {
+	border: 0;
+	outline: 0;
+	width: 100%;
 }
 
 .ajax .start-button {
@@ -159,5 +185,5 @@ nav.title-bar {
 
 .ajax .start-button:hover {
 	color: #111;
-	border-color: #c5fcc2;
+	border-color: #355c7d;
 }
