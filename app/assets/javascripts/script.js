@@ -161,8 +161,6 @@ $(document).ready(function() {
 					}
 				}
 
-				console.log(haystack[j], needle);
-
 				var found = {
 					'token': token,
 					'needle': j
@@ -192,13 +190,36 @@ $(document).ready(function() {
 							}, 2250); // 2.25 seconds
 						},
 						error: function(err) {
-							console.log('error 2', err);
+							console.log('needle in haystack error 2', err);
 						}
 					});
 				});
 			},
 			error: function(err) {
-				console.log('error 1', err);
+				console.log('needle in haystack error 1', err);
+			}
+		});
+
+		/* STEP 4 -- Prefix */
+		var prefix;
+		var array;
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://challenge.code2040.org/api/prefix',
+			data: {'token': token},
+			success: function(resp) {
+				prefix = resp.prefix;
+				array = resp.array;
+
+				console.log(prefix, array);
+
+				// return arr w/ str that do NOT start w/ prefix.
+
+
+			},
+			error: function(err) {
+				console.log('prefix error 1', err);
 			}
 		});
 	}
