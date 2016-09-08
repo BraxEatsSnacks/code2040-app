@@ -29,9 +29,9 @@ function createWindow() {
 	// create new draggable window
 	win = new BrowserWindow({
     title: 'Braxton\'s Code2040 Application',
+    minWidth: 550,
     minHeight: 500,
-    minWidth: 500,
-    width: 500,
+    width: 550,
     height: 500,
     maxWidth: 800,
     maxHeight: 500,

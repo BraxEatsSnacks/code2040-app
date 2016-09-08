@@ -29,6 +29,7 @@ html, body {
 	font-size: 12px;
 	font-weight: 300;
 	position: relative;
+	-webkit-app-region: drag;
 }
 
 footer {
@@ -90,7 +91,6 @@ nav.title-bar {
 	height: 40px;
 	width: 100%;
 	border-bottom: 1px solid #e5e5e5;
-	-webkit-app-region: drag;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: 20px;
@@ -113,6 +113,7 @@ nav.title-bar {
 
 .progress-container .titles {
 	font-size: 12px;
+	font-weight: 400;
 	letter-spacing: 3px;
 	text-transform: uppercase;
 	text-align: center;
