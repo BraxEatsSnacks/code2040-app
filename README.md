@@ -26,7 +26,7 @@ Make each hair flip fabulous
 ---
 ![Begin](http://i.imgur.com/nUkmYb0.jpg)
 
-**AJAX** is our friend! Let's Start!
+**AJAX** is our friend! Time to try this bad boy out!
 
 ###### Step 1 -- Token Registration
 ---
