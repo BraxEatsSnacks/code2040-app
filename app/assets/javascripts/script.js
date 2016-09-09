@@ -167,33 +167,33 @@ $(document).ready(function() {
 					'needle': j
 				};
 
-				// send found needle index
-				$('.find-button').click(function() {
-					$.ajax({
+				$.ajax({
 						type: 'POST',
 						url: 'http://challenge.code2040.org/api/haystack/validate',
 						data: found,
 						success: function(resp) {
 							console.log('success: ', resp);
-
-							// display success
-							$('.needle-haystack-step .command-wrapper').fadeOut(function() {
-								$('.needle-haystack-step .ajax-success').fadeIn();
-							});
-
-							// get next step
-							nextStep = setTimeout(function() {
-								$(steps[index]).fadeOut(function() {
-									$('.circle-'+index++).addClass('complete');
-									$('[class*="-step"]').removeClass('current');
-									$(steps[index]).addClass('current').fadeIn().css('display', '-webkit-flex');
-								});
-							}, 2250); // 2.25 seconds
 						},
 						error: function(err) {
 							console.log('needle in haystack error 2', err);
 						}
 					});
+
+				// send found needle index
+				$('.find-button').click(function() {
+					// display success
+					$('.needle-haystack-step .command-wrapper').fadeOut(function() {
+						$('.needle-haystack-step .ajax-success').fadeIn();
+					});
+
+					// get next step
+					nextStep = setTimeout(function() {
+						$(steps[index]).fadeOut(function() {
+							$('.circle-'+index++).addClass('complete');
+							$('[class*="-step"]').removeClass('current');
+							$(steps[index]).addClass('current').fadeIn().css('display', '-webkit-flex');
+						});
+					}, 2250); // 2.25 seconds
 				});
 			},
 			error: function(err) {
