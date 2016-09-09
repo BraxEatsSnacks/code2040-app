@@ -18,7 +18,7 @@ $(document).ready(function() {
 		});
 	});
 
-	/* STEP 1 & 2 & 3 */
+	/* STEPS */
 
 	// token enter via button
 	$('.token-button').click(function() {
@@ -57,7 +57,7 @@ $(document).ready(function() {
 			'github': 'https://github.com/BraxEatsSnacks/code2040-app' 
 		};
 
-		/* STEP 1 -- API post */
+		/* STEP 1 -- API Initial Post */
 		$.ajax({
 			type: 'POST',
 			url: 'http://challenge.code2040.org/api/register',
@@ -140,7 +140,7 @@ $(document).ready(function() {
 			}
 		});
 
-		/* STEP 3 -- find a needle in a haystack */
+		/* STEP 3 -- Find Needle in Haystack */
 		var haystack;
 		var needle;
 
@@ -218,7 +218,7 @@ $(document).ready(function() {
 
 				var noPrefix = [];
 
-				// TODO return arr w/ str that do NOT start w/ prefix.
+				// find those w/o prefix
 				for (var i=0; i< array.length; i++) {
 					if (!array[i].startsWith(prefix)) {
 						noPrefix.push(array[i]);
@@ -266,6 +266,63 @@ $(document).ready(function() {
 		});
 
 		/* STEP 5 -- The Dating Game */
+		var datestamp;
+		var interval;
+
+		$.ajax({
+			type: 'POST',
+			url: 'http://challenge.code2040.org/api/dating',
+			data: {'token': token},
+			timeout: 10000,
+			success: function(resp) {
+				datestamp = resp.datestamp;
+				interval = resp.interval;
+
+				$('input[name="datestamp"]').val(datestamp + ' + ' + interval + 's');
+
+				interval = resp.interval * 1000; // convert to ms
+
+				var date = new Date(datestamp);
+				date = date.getTime(); // in ms
+
+				date += interval;
+				date = new Date(date);
+
+				// weird js formatting
+				var str = date.toISOString();
+				str = str.substring(0, str.length - 5) + 'Z';
+				
+				var newDate = {
+					'token': token,
+					'datestamp': str
+				};
+
+				$.ajax({
+					type: 'POST',
+					url: 'http://challenge.code2040.org/api/dating/validate',
+					data: newDate,
+					success: function(resp) {
+						console.log('success: ', resp);
+					},
+					error: function(err) {
+						console.log('datestamp error 2: ', err);
+					}
+				});
+
+				$('.datestamp-button').click(function() {
+					// display success
+					$('.datestamp-step .command-wrapper').fadeOut(function() {
+						$('.datestamp-step .ajax-success').fadeIn();
+						$('.circle-'+index++).addClass('complete');
+					});
+
+					// FINAL STEP
+				});
+			},
+			error: function(err) {
+				console.log('datestamp error 1: ', err);
+			}
+		});
 	}
 
 });

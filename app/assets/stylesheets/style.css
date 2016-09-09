@@ -192,6 +192,11 @@ nav.title-bar {
 	display: none;
 }
 
+.success-statement {
+	margin-bottom: 25px;
+	letter-spacing: 2px
+}
+
 
 /* 
  * ANIMATED CHECKMARK	
