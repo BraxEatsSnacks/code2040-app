@@ -105,34 +105,34 @@ $(document).ready(function() {
 					'token': token,
 					'string': reverse
 				};
-				
-				// reverse the word in a click
-				$('.reverse-button').click(function() {
-					$.ajax({
+
+				$.ajax({
 						type: 'POST',
 						url: 'http://challenge.code2040.org/api/reverse/validate',
 						data: reversed,
 						success: function(resp) {
 							console.log('success: ', resp);
-
-							// display success
-							$('.reverse-step .command-wrapper').fadeOut(function() {
-								$('.reverse-step .ajax-success').fadeIn();
-							});
-
-							// get next step
-							nextStep = setTimeout(function() {
-								$(steps[index]).fadeOut(function() {
-									$('.circle-'+index++).addClass('complete');
-									$('[class*="-step"]').removeClass('current');
-									$(steps[index]).addClass('current').fadeIn().css('display', '-webkit-flex');
-								});
-							}, 2250); // 2.25 seconds
 						},
 						error: function(err) {
 							console.log('error', err);
 						}
 					});
+				
+				// reverse the word in a click
+				$('.reverse-button').click(function() {
+					// display success
+					$('.reverse-step .command-wrapper').fadeOut(function() {
+						$('.reverse-step .ajax-success').fadeIn();
+					});
+
+					// get next step
+					nextStep = setTimeout(function() {
+						$(steps[index]).fadeOut(function() {
+							$('.circle-'+index++).addClass('complete');
+							$('[class*="-step"]').removeClass('current');
+							$(steps[index]).addClass('current').fadeIn().css('display', '-webkit-flex');
+						});
+					}, 2250); // 2.25 seconds
 				});
 			},
 			error: function(err) {
