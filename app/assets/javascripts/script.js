@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var steps = $('.ajax').children('[class*="-step"]');
 	var index = 0;
 
-	var next_step;
+	var nextStep;
 
 	// global API token
 	var token;
@@ -25,7 +25,7 @@ $(document).ready(function() {
 		// get token
 		token = $('input[name="token"]').val();
 		// call function for steps
-		handle_steps(token);
+		handleSteps(token);
 	});
 
 	// token enter via enter key
@@ -37,7 +37,7 @@ $(document).ready(function() {
 			// get token
 			token = $(this).val();
 			// call function for steps
-			handle_steps(token);
+			handleSteps(token);
 		}
 	});
 
@@ -51,7 +51,7 @@ $(document).ready(function() {
 
 
 	/* HELPER FUNCTION */
-	function handle_steps(token) {
+	function handleSteps(token) {
 		var info = {
 			'token': token,
 			'github': 'https://github.com/BraxEatsSnacks/code2040-app' 
@@ -71,7 +71,7 @@ $(document).ready(function() {
 				});
 
 				// get next step
-				var next_step = setTimeout(function() {
+				var nextStep = setTimeout(function() {
 					$(steps[index]).fadeOut(function() {
 						$('.circle-'+index++).addClass('complete');
 						$('[class*="-step"]').removeClass('current');
@@ -101,7 +101,7 @@ $(document).ready(function() {
 					reverse += word[char];
 				}
 
-				var reverse_dict = {
+				var reversed = {
 					'token': token,
 					'string': reverse
 				};
@@ -111,7 +111,7 @@ $(document).ready(function() {
 					$.ajax({
 						type: 'POST',
 						url: 'http://challenge.code2040.org/api/reverse/validate',
-						data: reverse_dict,
+						data: reversed,
 						success: function(resp) {
 							console.log('success: ', resp);
 
@@ -121,7 +121,7 @@ $(document).ready(function() {
 							});
 
 							// get next step
-							next_step = setTimeout(function() {
+							nextStep = setTimeout(function() {
 								$(steps[index]).fadeOut(function() {
 									$('.circle-'+index++).addClass('complete');
 									$('[class*="-step"]').removeClass('current');
@@ -148,6 +148,7 @@ $(document).ready(function() {
 			type: 'POST',
 			url: 'http://challenge.code2040.org/api/haystack',
 			data: {'token': token},
+			timeout: 10000,
 			success: function(resp) {
 				haystack = resp.haystack;
 				needle = resp.needle;
@@ -181,7 +182,7 @@ $(document).ready(function() {
 							});
 
 							// get next step
-							next_step = setTimeout(function() {
+							nextStep = setTimeout(function() {
 								$(steps[index]).fadeOut(function() {
 									$('.circle-'+index++).addClass('complete');
 									$('[class*="-step"]').removeClass('current');
@@ -200,7 +201,7 @@ $(document).ready(function() {
 			}
 		});
 
-		/* STEP 4 -- Prefix */
+		/* STEP 4 -- No Prefix */
 		var prefix;
 		var array;
 
@@ -208,20 +209,63 @@ $(document).ready(function() {
 			type: 'POST',
 			url: 'http://challenge.code2040.org/api/prefix',
 			data: {'token': token},
+			timeout: 10000,
 			success: function(resp) {
 				prefix = resp.prefix;
 				array = resp.array;
 
-				console.log(prefix, array);
+				$('input[name="prefix"]').val(prefix);
 
-				// return arr w/ str that do NOT start w/ prefix.
+				var noPrefix = [];
 
+				// TODO return arr w/ str that do NOT start w/ prefix.
+				for (var i=0; i< array.length; i++) {
+					if (!array[i].startsWith(prefix)) {
+						noPrefix.push(array[i]);
+					}
+				}
+
+				var stringFu = {
+					'token': token,
+					'array': noPrefix
+				};
+
+				$.ajax({
+						type: 'POST',
+						url: 'http://challenge.code2040.org/api/prefix/validate',
+						data: stringFu,
+						timeout: 10000,
+						success: function(resp) {
+							console.log('success: ', resp);
+						},
+						error: function(err) {
+							console.log('prefix error 2', err);
+						}
+					});
+
+				$('.prefix-button').click(function() {
+					// display success
+					$('.prefix-step .command-wrapper').fadeOut(function() {
+						$('.prefix-step .ajax-success').fadeIn();
+					});
+
+					// get next step
+					nextStep = setTimeout(function() {
+						$(steps[index]).fadeOut(function() {
+							$('.circle-'+index++).addClass('complete');
+							$('[class*="-step"]').removeClass('current');
+							$(steps[index]).addClass('current').fadeIn().css('display', '-webkit-flex');
+						});
+					}, 2250); // 2.25 seconds
+				});
 
 			},
 			error: function(err) {
 				console.log('prefix error 1', err);
 			}
 		});
+
+		/* STEP 5 -- The Dating Game */
 	}
 
 });
